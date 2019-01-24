@@ -1,0 +1,54 @@
+.back {
+  padding: 35px;
+}
+
+.back a {
+  font-size: 18px;
+  color: darkgreen;
+}
+
+
+.info-station {
+
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
+}
+
+
+.station .station-name {
+  padding: 10px;
+  background-color: #cfcfcf;
+  border-radius: 5px;
+  color: #380505;
+  font-weight: bold;
+
+}
+
+
+.route {
+  font-weight: bold;
+  color: #480505;
+}
+
+.name-station {
+  width: 200px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #030306;
+  margin-right: 50px;
+}
+
+.block-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.time-schedules {
+  display: inline-flex;
+
+}
+
+.time-schedules p {
+  margin-right: 10px;
+}

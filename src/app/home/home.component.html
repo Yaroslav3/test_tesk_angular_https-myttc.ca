@@ -1,0 +1,13 @@
+
+<div class="search">
+  <form name="form" novalidate>
+    <div class="form-group">
+      <label for="search">id "stop-id"</label>
+      <input type="text" class="form-control" [(ngModel)]="stopId.id" name="id" id="search"
+             placeholder="enter id">
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm"
+    (click)="onSearch(stopId)"> <i class="fas fa-search"></i> Search</button>
+  </form>
+</div>
+

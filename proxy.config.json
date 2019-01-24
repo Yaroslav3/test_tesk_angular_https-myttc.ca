@@ -1,0 +1,11 @@
+
+{
+  "/stop/*": {
+    "target": "https://myttc.ca",
+    "secure": false,
+    "pathRewrite": {
+      "^/stop": ""
+    },
+    "changeOrigin": true
+  }
+}
