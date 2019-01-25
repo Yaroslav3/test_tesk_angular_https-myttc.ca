@@ -19,7 +19,7 @@ export class RouteService {
   getAllRoute(id: string): Observable<Station> {
     return this.http.get<Station>(`${url}/${id}.json`, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       })
     });
   }

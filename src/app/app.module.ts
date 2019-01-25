@@ -8,19 +8,23 @@ import {StopComponent} from './stop/stop.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {OrderModule} from 'ngx-order-pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    StopComponent
+    StopComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

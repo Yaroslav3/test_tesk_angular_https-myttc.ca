@@ -1,26 +1,34 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {RouteService} from '../shared/service/route.service';
 import {ActivatedRoute} from '@angular/router';
-import {Routes} from '../shared/model/routes.model';
-import {Stops} from '../shared/model/stops.model';
+import {StopSchedules} from '../shared/model/stopSchedules.model';
+import {StopsName} from '../shared/model/stopsName.model';
+import {OrderPipe} from 'ngx-order-pipe';
+import {DepartureTime} from '../shared/model/stopTime.model';
 
 
 @Component({
   selector: 'app-stop',
   templateUrl: './stop.component.html',
-  styleUrls: ['./stop.component.scss']
+  styleUrls: ['./stop.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class StopComponent implements OnInit {
 
   id: string;
-  stops: Stops;
-  routes: Routes;
+  stops: StopsName;
+  routes: StopSchedules;
+  stop_time: DepartureTime;
+  time: string = 'stop_times.departure_time';
+  reverse: boolean = false;
+  sortedCollection: any[];
 
-
-  constructor(private idNumber: ActivatedRoute, private routeService: RouteService) {
+  constructor(private idNumber: ActivatedRoute, private routeService: RouteService, private orderPipe: OrderPipe) {
     idNumber.params.subscribe((p) => {
       this.id = p.id;
     });
+    this.sortedCollection = orderPipe.transform(this.stop_time, 'departure_time');
+    console.log(this.sortedCollection);
   }
 
   ngOnInit() {
@@ -32,5 +40,12 @@ export class StopComponent implements OnInit {
     this.routeService.getAllRoute(id).subscribe((data) => {
       this.stops = data.stops;
     });
+  }
+
+  setOrder(value: string) {
+    if (this.time === value) {
+      this.reverse = !this.reverse;
+    }
+    this.time = value;
   }
 }

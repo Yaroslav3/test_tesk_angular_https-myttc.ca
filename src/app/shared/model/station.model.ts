@@ -1,5 +1,5 @@
-import {Stops} from './stops.model';
+import {StopsName} from './stopsName.model';
 
 export class Station {
-  stops: Stops;
+  stops: StopsName;
 }

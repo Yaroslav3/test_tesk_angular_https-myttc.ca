@@ -1,4 +1,3 @@
-
 {
   "/stop/*": {
     "target": "https://myttc.ca",

@@ -11,8 +11,9 @@
         <hr>
         <div class="block-info" *ngFor="let elem2 of stops[i].routes;let r =index">
           <p class="name-station">{{elem2.name}}:</p>
-          <div class="time-schedules" *ngFor="let elem3 of stops[i].routes[r].stop_times;">
-            <p>{{elem3.departure_time}};</p>
+          <div class="time-schedules"
+               *ngFor="let elem3 of stops[i].routes[r].stop_times |  orderBy: time:reverse:'departure_time'">
+            <p style="color: darkblue">{{elem3.departure_time}};</p>
           </div>
         </div>
         <hr>
