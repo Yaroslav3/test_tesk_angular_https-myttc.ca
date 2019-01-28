@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {StopId} from '../shared/model/stopId.midel';
+import {NgModel} from '@angular/forms';
+
 
 
 @Component({
@@ -21,4 +23,5 @@ export class HomeComponent implements OnInit {
   onSearch(id: StopId) {
     this.router.navigate(['stop', id.id]);
   }
+
 }

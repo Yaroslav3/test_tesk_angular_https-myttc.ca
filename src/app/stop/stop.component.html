@@ -2,18 +2,19 @@
   <a routerLink=""> <i class="fas fa-chevron-left"></i> Back</a>
 </div>
 
+
 <div class="info-station">
   <div class="station">
-    <div *ngFor="let elem of stops; let i=index">
-      <div *ngIf="stops[i].routes.length != 0">
-        <p class="station-name">{{elem.name}}</p>
+    <div *ngFor="let elem of stopInfo; let i=index">
+      <div *ngIf="stopInfo[i].stopSchedules.length != 0">
+        <p class="station-name">{{elem.stopName}}</p>
         <p class="route">route</p>
         <hr>
-        <div class="block-info" *ngFor="let elem2 of stops[i].routes;let r =index">
-          <p class="name-station">{{elem2.name}}:</p>
+        <div class="block-info" *ngFor="let elem2 of stopInfo[i].stopSchedules; let r =index">
+          <p class="name-station">{{elem2.stopName}}:</p>
           <div class="time-schedules"
-               *ngFor="let elem3 of stops[i].routes[r].stop_times |  orderBy: time:reverse:'departure_time'">
-            <p style="color: darkblue">{{elem3.departure_time}};</p>
+               *ngFor="let elem3 of stopInfo[i].stopSchedules[r].stop_times |  orderBy: time:reverse:'departureTime';">
+            <p style="color: darkblue">{{elem3.departureTime}};</p>
           </div>
         </div>
         <hr>

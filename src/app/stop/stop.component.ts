@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {RouteService} from '../shared/service/route.service';
 import {ActivatedRoute} from '@angular/router';
-import {StopSchedules} from '../shared/model/stopSchedules.model';
-import {StopsName} from '../shared/model/stopsName.model';
+import {StopInfo} from '../shared/model/stopInfo.model';
 import {OrderPipe} from 'ngx-order-pipe';
-import {DepartureTime} from '../shared/model/stopTime.model';
+import {DepartureTime} from '../shared/model/departureTime.model';
+import {JsonService} from '../shared/service/json.service';
+import {ApiMyttcService} from '../shared/service/api-myttc.service';
 
 
 @Component({
@@ -16,18 +16,21 @@ import {DepartureTime} from '../shared/model/stopTime.model';
 export class StopComponent implements OnInit {
 
   id: string;
-  stops: StopsName;
-  routes: StopSchedules;
   stop_time: DepartureTime;
-  time: string = 'stop_times.departure_time';
+  time: string = 'stop_times.departureTime';
   reverse: boolean = false;
   sortedCollection: any[];
 
-  constructor(private idNumber: ActivatedRoute, private routeService: RouteService, private orderPipe: OrderPipe) {
+
+  stopInfo: StopInfo;
+
+
+  constructor(private idNumber: ActivatedRoute, private apiMyttcService: ApiMyttcService, private jsonService: JsonService,
+              private orderPipe: OrderPipe) {
     idNumber.params.subscribe((p) => {
       this.id = p.id;
     });
-    this.sortedCollection = orderPipe.transform(this.stop_time, 'departure_time');
+    this.sortedCollection = orderPipe.transform(this.stop_time, 'departureTime');
     console.log(this.sortedCollection);
   }
 
@@ -37,15 +40,9 @@ export class StopComponent implements OnInit {
 
 
   getAllRoute(id: string) {
-    this.routeService.getAllRoute(id).subscribe((data) => {
-      this.stops = data.stops;
+    this.apiMyttcService.getAllRoute(id).subscribe((data) => {
+      this.stopInfo = this.jsonService.jsonChanges(data);
+      console.log(this.stopInfo);
     });
-  }
-
-  setOrder(value: string) {
-    if (this.time === value) {
-      this.reverse = !this.reverse;
-    }
-    this.time = value;
   }
 }

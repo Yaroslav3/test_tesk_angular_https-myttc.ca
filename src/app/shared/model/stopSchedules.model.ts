@@ -1,6 +1,6 @@
-import {DepartureTime} from './stopTime.model';
+import {DepartureTime} from './departureTime.model';
 
 export class StopSchedules {
-  lineName : string;
-  stop_times: DepartureTime;
+  name: string;
+  stop_times:  Array<DepartureTime>;
 }
